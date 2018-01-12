@@ -1,0 +1,49 @@
+SET LOG \\psbldfs.us.oracle.com\dfs\enterprise\QEShare\QEO-Partner\DataMover_Scripts\setupExecOption.log;
+
+    --ACTIVE THE PTTST_CONFIG_NO_SSL--
+    UPDATE PSOPRVERDFN SET ACTIVE_FLAG = 'A' where IB_OPERATIONNAME = 'PTTST_CONFIG_NO_SSL';
+    COMMIT;
+--Add Execution Option--
+    delete from PSPTTSTOPTIONS where PTTST_EXOP_NAME = 'E92PO006';
+    COMMIT;
+Insert into PSPTTSTOPTIONS values (
+            'E92PO006',
+            'N',
+            'http://slc11vtm.us.oracle.com:8000/psp/e92po006x/?&cmd=login&languageCd=ENG',
+            'CH',
+            'VP1',
+            '1ENC1EED306F6AFC3A3E96F980DB62B88A9ACECDC0EF',
+            'PSUNX',
+            'QA',
+            'Y',
+            'N',
+            'N',
+            'N',
+            'N',
+            'MM/DD/YYYY',
+            0,
+            '\\psbldfs\dfs\build\pt\ptship\856\install_Windows.ora',
+            'E92PO006',
+            'VP1',
+            '1ENC1EED306F6AFC3A3E96F980DB62B88A9ACECDC0EF',
+            ' ',
+            'ORACLE',
+            '\\psbldfs.us.oracle.com\dfs\enterprise\QEShare\QEO-Partner\DataMover_Scripts',
+            '\\psbldfs.us.oracle.com\dfs\enterprise\QEShare\QEO-Partner\DataMover_Scripts',
+            '\\psbldfs.us.oracle.com\dfs\enterprise\QEShare\QEO-Partner\DataMover_Scripts',
+            'Y',
+            '\\slcnas463.us.oracle.com\enterprise\QEShare\PTF_Log\49151_E92PO006_fangfang.jiang@oracle.com_20180111013651 ',
+            '\\slcnas463.us.oracle.com\enterprise\PTF\Logs\ToolsAutoStyle.xsl ',
+            'Y',
+            'Y',
+            'N'
+        );
+    COMMIT;
+delete from PSPTTSTOPT_URL where PTTST_EXOP_NAME = 'E92PO006';
+    COMMIT;
+Insert into PSPTTSTOPT_URL values (
+            'E92PO006',
+            'PORTAL',
+            'http://slc11vtm.us.oracle.com:8000/psc/e92po006x/EMPLOYEE/ERP/'
+        );
+    COMMIT;
